@@ -10,11 +10,18 @@ class Catalogo(models.Model):
     class Meta:
         verbose_name_plural = "Catalogos"
 
+class ItemCompra(models.Model):
+    tipo = models.CharField(max_length=100)
+    visibilidad = models.BooleanField()
+    catalogo = models.ForeignKey(to=Catalogo, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = "Items"
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
-    habilitado = models.BooleanField()
-    imagen = models.URLField()
-    catalogo = models.ForeignKey(to=Catalogo, onDelete=models.DO_NOTHING)
+    precio = models.FloatField()
+    itemId = models.ForeignKey(to=ItemCompra, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name_plural = "Productos"
