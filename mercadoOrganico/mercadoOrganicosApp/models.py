@@ -10,6 +10,7 @@ class Catalogo(models.Model):
     class Meta:
         verbose_name_plural = "Catalogos"
 
+
 class ItemCompra(models.Model):
     tipo = models.CharField(max_length=100)
     visibilidad = models.BooleanField()
@@ -17,6 +18,10 @@ class ItemCompra(models.Model):
 
     class Meta:
         verbose_name_plural = "Items"
+
+    def __str__(self) -> str:
+        return self.tipo
+
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
