@@ -23,6 +23,18 @@ class ItemCompra(models.Model):
         return self.tipo
 
 
+class Carrito(models.Model):
+    usuario_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    item_compras = models.ManyToManyField(ItemCompra)
+    precio_total = models.DecimalField()
+
+    class Meta:
+        verbose_name_plurar = "canastas"
+
+    def __str__(self):
+        return self.precio_total
+
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.FloatField()
